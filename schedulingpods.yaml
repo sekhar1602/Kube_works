@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: schedulingpods
+spec:
+  selector:
+    matchLabels:
+      running: afterLabels
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        running: afterLabels
+    spec:
+      containers:
+      - name: podscheduling
+        image: busybox
+        command: ["sleep"]
+        args: ["60"]
+      restartPolicy: Always
+      nodeSelector:
+        color: green

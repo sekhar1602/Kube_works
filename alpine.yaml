@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: alpinev2
+  namespace: default
+spec:
+  containers:
+  - name: alpine
+    image: alpine
+    command: ["/bin/echo"]
+    args: ["Helloworld!"]
+    imagePullPolicy: IfNotPresent
+  restartPolicy: Always

@@ -1,0 +1,47 @@
+#APIVersion defines the versioned schema of this representation of an object.
+apiVersion: v1 
+#Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to.
+kind: Pod
+#Standard object's metadata.
+metadata:
+  name: busyboxconfig
+#Specification of the desired behavior of the pod.
+spec:
+#List of containers belonging to the pod. Containers cannot currently be added or removed. There must be at least one container in a Pod. Cannot be updated.
+  containers:
+  - name: busyboxc
+    image: busybox
+    command: ["/bin/sh", "-c", "env"]
+    env:
+#Define the environment variable
+    - name: studentname
+      valueFrom:
+        configMapKeyRef:
+#The ConfigMap containing the value you want to assign to environment
+          name: myconfig
+#Specify the key associated with the value
+          key: STUDENT_NAME
+    - name: school
+      valueFrom:
+        configMapKeyRef:
+          name: myconfig
+          key: SCHOOL
+    - name: kubernetes
+      valueFrom:
+        configMapKeyRef: 
+          name: myconfig
+          key: KUBERNETES
+#Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: 
+  restartPolicy: Never
+#configure all key-value pairs in a ConfigMap as container environment variables
+#spec:
+#  containers:
+#  - name: test-config
+#    image: busybox
+#    command: ["/bin/sh", "-c", "env"]
+#    envFrom:
+#    - configMapRef:
+#        name: special-config
+#  restartPolicy: Never     
+       
+       

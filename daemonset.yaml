@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: daemonset-example
+spec:
+  template:
+    metadata:
+      labels: 
+        app: daemon-example
+    spec:
+      containers: 
+      - name: daemonset-example
+        image: nginx:1.10.2
+        command: ["/bin/sh", "-c", "env"]
+

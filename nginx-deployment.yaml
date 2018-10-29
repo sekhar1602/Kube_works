@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  #unique key of the Deployment
+  name: my-nginx
+spec:
+  selector:
+    matchLabels: 
+      app: nginx
+  # 2 pods should exists at all time
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        #Apply this label to pods and default
+        #the Deployment label selector to this value
+        app: nginx
+    spec: 
+      containers:
+      - name: nginx
+        # Run this image
+        image: nginx:1.10.2
+        # Expose this container port
+        ports:
+        - containerPort: 80
