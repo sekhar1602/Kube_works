@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: la-lb-service
+spec:
+  selector:
+#This helps when you work with any other kind of service where you want select all the pods that are specifying label as app: la-lb.
+    app: la-lb
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 9376
+  clusterIP: 10.0.171.223
+  loadBalancerIP: 78.12.23.17 #this IP is from external cloud to configure that host as a lb.
+  type: LoadBalancer
+#This yaml file deploys load balancer to redirect traffice from outside world into the cluster. This service load balancer is available on cloud providers which do support external load balancers. Actual creation of load balancer happens asynchronously. Any information about provision of balancer is specified in services status of load balancer field.
