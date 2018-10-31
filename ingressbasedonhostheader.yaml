@@ -16,3 +16,6 @@ spec:
       - backend:
           serviceName: s2
           servicePort: 80
+#If you want to create this ingress use cmd: "kubectl create -f {name of this ingress yaml file}"
+#Once the ingress is created you can get the information of ingress using cmd:"kubectl get ing" and "kubectl describe ingress {name of ingress provided in metadata}"
+#Once the ingress is running if you want to edit the ingress by adding hosts or change backend services; use cmd: "kubectl edit ingress {name of ingress provided in metada}"
