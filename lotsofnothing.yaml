@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lots-of-nothing
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: k8s
+  template:
+    metadata:
+      labels:
+#Apply this label to pods and default the Deployment label selector to this value
+        app: k8s
+    spec:
+      containers:
+      - name: k8s-cont
+        image: k8s.gcr.io/pause:2.0
+        
